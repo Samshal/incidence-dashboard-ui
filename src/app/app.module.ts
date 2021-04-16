@@ -16,11 +16,15 @@ import { NgSelect2Module } from 'ng-select2';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MetadataComponent } from './metadata/metadata.component';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+import { ChartsDashboardComponent } from './charts-dashboard/charts-dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NewIncidentComponent,
-    MetadataComponent
+    MetadataComponent,
+    ChartsDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,10 @@ import { MetadataComponent } from './metadata/metadata.component';
     AppRoutingModule,
     NgSelect2Module,
     LeafletModule,
-    DataTablesModule
+    DataTablesModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
