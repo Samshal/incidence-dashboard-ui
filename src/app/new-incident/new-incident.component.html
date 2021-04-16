@@ -16,131 +16,131 @@
 						<form action="#">
 							<div class="row">
 								<div class="col-md-4 form-group">
-									<label>Country:</label>
-									<ng-select2 [data]="select2Data.countryList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">Country:</label>
+									<ng-select2 [data]="select2Data.countryList" [options]="select2Options" [(ngModel)]="formData.country" name="country" (ngModelChange)="loadRegions($event)"></ng-select2>
 								</div>
 
 								<div class="col-md-4 form-group">
-									<label>Region:</label>
-									<ng-select2 [data]="select2Data.regionList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">Region:</label>
+									<ng-select2 [data]="select2Data.regionList" [options]="select2Options" [(ngModel)]="formData.region" name="region" (ngModelChange)="loadStates($event)"></ng-select2>
 								</div>
 
 								<div class="col-md-4 form-group">
-									<label>State:</label>
-									<ng-select2 [data]="select2Data.stateList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">State:</label>
+									<ng-select2 [data]="select2Data.stateList" [options]="select2Options" [(ngModel)]="formData.state" name="state" (ngModelChange)="loadLgas($event)"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-6 form-group">
-									<label>LGA:</label>
-									<ng-select2 [data]="select2Data.lgaList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">LGA:</label>
+									<ng-select2 [data]="select2Data.lgaList" [options]="select2Options" [(ngModel)]="formData.lga" name="lga" (ngModelChange)="loadLocalities($event)"></ng-select2>
 								</div>
 
 								<div class="col-md-6 form-group">
-									<label>Locality:</label>
-									<ng-select2 [data]="select2Data.localityList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">Locality:</label>
+									<ng-select2 [data]="select2Data.localityList" [options]="select2Options" [(ngModel)]="formData.locality" name="locality"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-6 form-group">
-									<label>Incident Type:</label>
+									<label class="font-weight-semibold">Incident Type:</label>
 									<ng-select2 [data]="select2Data.incidentTypeList" [options]="select2Options"></ng-select2>
 								</div>
 
 								<div class="col-md-6 form-group">
-									<label>Incident:</label>
+									<label class="font-weight-semibold">Incident:</label>
 									<ng-select2 [data]="select2Data.incidentList" [options]="select2Options"></ng-select2>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label>Incidence Title:</label>
+								<label class="font-weight-semibold">Incidence Title:</label>
 								<input type="text" class="form-control" placeholder="Enter a title for the incidence here">
 							</div>
 
 							<div class="row">
 								<div class="col-md-8 form-group">
-									<label>Incidence Date:</label>
+									<label class="font-weight-semibold">Incidence Date:</label>
 									<input type="date" class="form-control">
 								</div>
 
 								<div class="col-md-4 form-group">
-									<label>Time:</label>
+									<label class="font-weight-semibold">Time:</label>
 									<input type="time" class="form-control">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
-									<label>Faction:</label>
+									<label class="font-weight-semibold">Faction:</label>
 									<ng-select2 [data]="select2Data.factionList" [options]="select2Options_multiple"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
-									<label>Friendly Forces:</label>
+									<label class="font-weight-semibold">Friendly Forces:</label>
 									<ng-select2 [data]="select2Data.friendlyForcesList" [options]="select2Options_multiple"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
-									<label>Terrain:</label>
+									<label class="font-weight-semibold">Terrain:</label>
 									<ng-select2 [data]="select2Data.terrainList" [options]="select2Options_multiple"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
-									<label>Landmark / Associated Feature:</label>
+									<label class="font-weight-semibold">Landmark / Associated Feature:</label>
 									<ng-select2 [data]="select2Data.associatedFeatureList" [options]="select2Options_multiple"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-4 form-group">
-									<label>KIA:</label>
+									<label class="font-weight-semibold">KIA:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 
 								<div class="col-md-4 form-group">
-									<label>MIA:</label>
+									<label class="font-weight-semibold">MIA:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 
 								<div class="col-md-4 form-group">
-									<label>WIA:</label>
+									<label class="font-weight-semibold">WIA:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-3 form-group">
-									<label>Civillians Killed:</label>
+									<label class="font-weight-semibold">Civillians Killed:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 
 								<div class="col-md-3 form-group">
-									<label>Civillians Abducted:</label>
+									<label class="font-weight-semibold">Civillians Abducted:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 
 								<div class="col-md-3 form-group">
-									<label>Criminals Killed:</label>
+									<label class="font-weight-semibold">Criminals Killed:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 
 								<div class="col-md-3 form-group">
-									<label>Suspects Arrested:</label>
+									<label class="font-weight-semibold">Suspects Arrested:</label>
 									<input type="number" class="form-control" placeholder="0"/>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label>Comments / Analysis:</label>
+								<label class="font-weight-semibold">Comments / Analysis:</label>
 								<textarea rows="5" cols="5" class="form-control" placeholder="Enter your comment / analysis here"></textarea>
 							</div>
 						</form>
@@ -153,12 +153,12 @@
 
 						<div class="row">
 							<div class="col-md-6 form-group">
-								<label>POI Latitude:</label>
+								<label class="font-weight-semibold">POI Latitude:</label>
 								<input type="text" class="form-control"/>
 							</div>
 
 							<div class="col-md-6 form-group">
-								<label>POI Longitude:</label>
+								<label class="font-weight-semibold">POI Longitude:</label>
 								<input type="text" class="form-control"/>
 							</div>
 						</div>

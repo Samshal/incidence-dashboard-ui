@@ -50,16 +50,48 @@ export class NewIncidentComponent implements OnInit {
 		center: L.latLng(46.879966, -121.726909)
 	};
 
+	formData: any = {
+		country: "",
+		region: "",
+		state: "",
+		lga: "",
+		locality: ""
+	}
+
 	loadCountries(): void {
-		this.serverRequest.get("spatial-entity/entity/view-entities-by-type?entityType=1").subscribe(res => {
-			this.select2Data.countryList = [];
+		this.loadSpatialEntityList("countryList", "spatial-entity/entity/view-entities-by-type?entityType=1")
+	}
+
+	loadSpatialEntityChildren(list, parentId): void {
+		this.loadSpatialEntityList(list, "spatial-entity/entity/view-entity-children?entityId="+parentId);
+	}
+
+	loadSpatialEntityList(list, endpoint): void {
+		this.serverRequest.get(endpoint).subscribe(res => {
+			this.select2Data[list] = [];
 			(res.contentData).forEach(data => {
-				this.select2Data.countryList.push({
+				this.select2Data[list].push({
 					"id":data.EntityId,
 					"text":data.EntityName
 				})
 			})
-		});
+		});		
+	}
+
+	loadRegions(event): void{
+		this.loadSpatialEntityChildren("regionList", this.formData.country);
+	}
+
+	loadStates(event): void{
+		this.loadSpatialEntityChildren("stateList", this.formData.region);
+	}
+
+	loadLgas(event): void{
+		this.loadSpatialEntityChildren("lgaList", this.formData.state);
+	}
+
+	loadLocalities(event): void{
+		this.loadSpatialEntityChildren("localityList", this.formData.lga);
 	}
 
 }

@@ -112,109 +112,6 @@
               <i class="icon-office mr-2"></i>
               Incidence Workspace
             </a>
-
-            <div class="dropdown-menu dropdown-content">
-              <div class="dropdown-content-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Column title</div>
-                    <div class="dropdown-divider mb-2"></div>
-                    <div class="dropdown-item-group mb-3 mb-md-0">
-                      <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item rounded">Top level link 1</a></li>
-                        <li>
-                          <a href="#" class="dropdown-item rounded">With sub levels</a>
-                          <ul class="list-unstyled">
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                            <li>
-                              <a href="#" class="dropdown-item rounded">With sub levels</a>
-                              <ul class="list-unstyled">
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                              </ul>
-                            </li>
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="#" class="dropdown-item rounded">Top level link 2</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Column title</div>
-                    <div class="dropdown-divider mb-2"></div>
-                    <div class="dropdown-item-group mb-3 mb-md-0">
-                      <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item rounded">Top level link 1</a></li>
-                        <li>
-                          <a href="#" class="dropdown-item dropdown-item-open rounded">With sub levels</a>
-                          <ul class="list-unstyled">
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                            <li>
-                              <a href="#" class="dropdown-item dropdown-item-open rounded">With sub levels</a>
-                              <ul class="list-unstyled active">
-                                <li><a href="#" class="dropdown-item active rounded">Active link</a></li>
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                              </ul>
-                            </li>
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="#" class="dropdown-item rounded">Top level link 2</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Column title</div>
-                    <div class="dropdown-divider mb-2"></div>
-                    <div class="dropdown-item-group mb-3 mb-md-0">
-                      <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item rounded">Top level link 1</a></li>
-                        <li>
-                          <a href="#" class="dropdown-item rounded">With sub levels</a>
-                          <ul class="list-unstyled">
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                            <li>
-                              <a href="#" class="dropdown-item rounded">With sub levels</a>
-                              <ul class="list-unstyled">
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                              </ul>
-                            </li>
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="#" class="dropdown-item rounded">Top level link 2</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Column title</div>
-                    <div class="dropdown-divider mb-2"></div>
-                    <div class="dropdown-item-group mb-3 mb-md-0">
-                      <ul class="list-unstyled">
-                        <li><a href="#" class="dropdown-item rounded">Top level link 1</a></li>
-                        <li>
-                          <a href="#" class="dropdown-item rounded">With sub levels</a>
-                          <ul class="list-unstyled">
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                            <li>
-                              <a href="#" class="dropdown-item rounded">With sub levels</a>
-                              <ul class="list-unstyled">
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                                <li><a href="#" class="dropdown-item rounded">Third level</a></li>
-                              </ul>
-                            </li>
-                            <li><a href="#" class="dropdown-item rounded">Second level</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="#" class="dropdown-item rounded">Top level link 2</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </li>
 
           <li class="nav-item dropdown">
@@ -265,7 +162,7 @@
         </li>
         <li>
           <div data-fab-label="Manage Metadata">
-            <a href="#" class="btn btn-light rounded-round btn-icon btn-float">
+            <a href="#" class="btn btn-light rounded-round btn-icon btn-float" data-toggle="modal" data-target="#modal_full">
               <i class="icon-notebook"></i>
             </a>
           </div>
@@ -292,3 +189,23 @@
     </div>
   </div>
 </div>
+
+<!-- Full width modal -->
+<div id="modal_full" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-indigo">
+                <h5 class="modal-title">Metadata Management</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <app-metadata></app-metadata>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn bg-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /full width modal -->
