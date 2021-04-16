@@ -54,6 +54,7 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 
 	loadData(dataType): void {
 		this.currentData.type = dataType;
+		this.currentData.parent = 0;
 		switch(dataType) {
 			case "countries": {
 				this.currentData.title = "Countries";
@@ -97,6 +98,26 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 				this.loadIncidentTypes()
 				break;
 			}
+			case "factions": {
+				this.currentData.title = "Factions";
+				this.loadMetadata("faction");
+				break;
+			}
+			case "friendly-forces": {
+				this.currentData.title = "Friendly Forces";
+				this.loadMetadata("friendly_forces");
+				break;
+			}
+			case "terrain": {
+				this.currentData.title = "Terrain Types";
+				this.loadMetadata("terrain");
+				break;
+			}
+			case "associated-features": {
+				this.currentData.title = "Landmarks / Associated Features";
+				this.loadMetadata("associated_feature");
+				break;
+			}
 		}
 	}
 
@@ -108,6 +129,12 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 			description: this.newRecord.desc
 		}
 		switch(this.currentData.type) {
+			case "countries":{
+				data.entityType = 1;
+				data.entityParentId = 0;
+				this.saveSpatialEntity(postUrl, data);
+				break;
+			}
 			case "regions":{
 				data.entityType = 2;
 				this.saveSpatialEntity(postUrl, data);
@@ -128,6 +155,55 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 				this.saveSpatialEntity(postUrl, data);
 				break;
 			}
+			case "incident-categories":{
+				data = {
+					name: this.newRecord.value,
+					description: this.newRecord.desc
+				}
+				this.saveIncidentCategory(data);
+				break;
+			}
+			case "incident-types":{
+				data = {
+					name: this.newRecord.value,
+					category: this.newRecord.parent,
+					description: this.newRecord.desc
+				}
+				this.saveIncidentType(data);
+				break;
+			}
+			case "factions":{
+				data = {
+					field:"faction",
+					value: this.newRecord.value
+				}
+				this.saveMetadata(data);
+				break;
+			}
+			case "friendly-forces":{
+				data = {
+					field:"friendly_forces",
+					value: this.newRecord.value
+				}
+				this.saveMetadata(data);
+				break;
+			}
+			case "terrain":{
+				data = {
+					field:"terrain",
+					value: this.newRecord.value
+				}
+				this.saveMetadata(data);
+				break;
+			}
+			case "associated-features":{
+				data = {
+					field:"associated_feature",
+					value: this.newRecord.value
+				}
+				this.saveMetadata(data);
+				break;
+			}
 		}
 
 
@@ -140,7 +216,7 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 				this.currentData.data.push({
 					"id":data.EntityId,
 					"text":data.EntityName,
-					"parent":""
+					"parent":data.EntityParent
 				})
 			}, error => {
 				this.currentData.data = [];
@@ -155,14 +231,46 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 			(res.contentData).forEach(data => {
 				this.currentData.data.push({
 					"id":data.IncidentCategoryId,
-					"text":data.IncidentCategoryName
+					"text":data.IncidentCategoryName,
+					"parent":""
 				})
 			}, error => {
 				this.currentData.data = [];
 			})
 			this.rerender();
 		});		
+	}
 
+	loadIncidentTypes(): void {
+		this.serverRequest.get("incidents/incident-type/view-incident-types?resourceId=0").subscribe(res => {
+			this.currentData.data = [];
+			(res.contentData).forEach(data => {
+				this.currentData.data.push({
+					"id":data.IncidentTypeId,
+					"text":data.IncidentTypeName,
+					"parent":data.IncidentCategoryName
+				})
+			}, error => {
+				this.currentData.data = [];
+			})
+			this.rerender();
+		});		
+	}
+
+	loadMetadata(field): void {
+		this.serverRequest.get("incidents/metadata/view-values?field="+field).subscribe(res => {
+			this.currentData.data = [];
+			(res.contentData).forEach(data => {
+				this.currentData.data.push({
+					"id":data.ValueId,
+					"text":data.Value,
+					"parent":""
+				})
+			}, error => {
+				this.currentData.data = [];
+			})
+			this.rerender();
+		});				
 	}
 
 	saveSpatialEntity(url, data): void {
@@ -175,17 +283,65 @@ export class MetadataComponent implements AfterViewInit, OnDestroy, OnInit {
 		})
 	}
 
-	loadParent(parent): void {
-		this.serverRequest.get("spatial-entity/entity/view-entities-by-type?entityType="+parent).subscribe(res => {
-			this.entityParent = [];
-			(res.contentData).forEach(data => {
-				this.entityParent.push({
-					"id":data.EntityId,
-					"text":data.EntityName
-				})
-			}, error => {
+	saveIncidentCategory(data): void {
+		this.serverRequest.post("incidents/incident-type/new-incident-category", data).subscribe(res => {
+			$("#modal_add").modal("hide");
+			this.loadData(this.currentData.type);
+			this.newRecord = {}
+		}, error => {
+			console.log(error)
+		})		
+	}
+
+	saveIncidentType(data): void {
+		this.serverRequest.post("incidents/incident-type/new-incident-type", data).subscribe(res => {
+			$("#modal_add").modal("hide");
+			this.loadData(this.currentData.type);
+			this.newRecord = {}
+		}, error => {
+			console.log(error)
+		})		
+	}
+
+	saveMetadata(data): void {
+		this.serverRequest.post("incidents/metadata/new-value", data).subscribe(res => {
+			$("#modal_add").modal("hide");
+			this.loadData(this.currentData.type);
+			this.newRecord = {}
+		}, error => {
+			console.log(error)
+		})		
+	}
+
+	loadParent(): void {
+		let spatialEntities = ["countries", "regions", "states", "lgas", "localities"];
+		if (spatialEntities.includes(this.currentData.type)){
+			this.serverRequest.get("spatial-entity/entity/view-entities-by-type?entityType="+this.currentData.parent).subscribe(res => {
 				this.entityParent = [];
-			})
-		});		
+				(res.contentData).forEach(data => {
+					this.entityParent.push({
+						"id":data.EntityId,
+						"text":data.EntityName
+					})
+				}, error => {
+					this.entityParent = [];
+				})
+			});		
+		}
+		else {
+			if (this.currentData.type == "incident-types"){
+				this.serverRequest.get("incidents/incident-type/view-categories").subscribe(res => {
+					this.entityParent = [];
+					(res.contentData).forEach(data => {
+						this.entityParent.push({
+							"id":data.IncidentCategoryId,
+							"text":data.IncidentCategoryName,
+						})
+					}, error => {
+						this.entityParent = [];
+					})
+				});	
+			}
+		}
 	}
 }

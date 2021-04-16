@@ -10,10 +10,10 @@
                 <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('localities')">Localities</a></li>
                 <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('incident-categories')">Incident Categories</a></li>
                 <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('incident-types')">Incident Types</a></li>
-                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab">Factions</a></li>
-                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab">Friendly Forces</a></li>
-                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab">Terrain</a></li>
-                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab">Associated Features</a></li>
+                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('factions')">Factions</a></li>
+                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('friendly-forces')">Friendly Forces</a></li>
+                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('terrain')">Terrain</a></li>
+                <li class="nav-item"><a href="#datatable-tab" class="nav-link" data-toggle="tab" (click)="loadData('associated-features')">Associated Features</a></li>
             </ul>
 
             <div class="tab-content flex-grow-1">
@@ -21,7 +21,7 @@
                 	<div class="row">
                 		<div class="col-md-8"><h1 class="font">{{currentData.title}}</h1></div>
                 		<div cass="col-md-4 pull-right" style="margin-bottom:10px">
-                			<a href="#" class="btn btn-primary btn-icon" data-toggle="modal" data-target="#modal_add" (click)="loadParent(currentData.parent)">
+                			<a href="#" class="btn btn-primary btn-icon" data-toggle="modal" data-target="#modal_add" (click)="loadParent()">
 	                			<i class="icon-plus3"></i> Add new record
 	                		</a>
 	                	</div>
@@ -31,14 +31,16 @@
 	                        <thead>
 	                            <tr>
 	                                <th>ID</th>
-	                                <th>Record</th>
+	                                <th>Record Value</th>
+	                                <th>Record Parent</th>
 	                                <th class="text-center">Actions</th>
 	                            </tr>
 	                        </thead>
 	                        <tbody>
 	                            <tr *ngFor="let record of currentData.data">
 	                            	<td width="5%">{{record.id}}</td>
-	                            	<td width="70%">{{record.text}}</td>
+	                            	<td width="35%">{{record.text}}</td>
+	                            	<td width="35%">{{record.parent}}</td>
 	                            	<td width="25%">
 	                            		<a href="#" class="btn btn-light btn-icon mr-2">
 	                            			<i class="icon-pencil"></i>
@@ -51,18 +53,6 @@
 	                        </tbody>
 	                    </table>
 	                </div>
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab2">
-                    Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab3">
-                    DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg whatever.
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab4">
-                    Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthet.
                 </div>
             </div>
         </div>
@@ -90,9 +80,7 @@
 						<div class="form-group row">
 							<label class="col-form-label col-lg-2">Record Parent</label>
 							<div class="col-lg-10">
-								<select class="form-control" [(ngModel)]="newRecord.parent" name="recordParent">
-									<option *ngFor="let entity of entityParent" value="{{entity.id}}">{{entity.text}}</option>
-								</select>
+								<ng-select2 [width]="'100%'" [data]="entityParent" [(ngModel)]="newRecord.parent" name="recordParent"></ng-select2>
 							</div>
 						</div>
 

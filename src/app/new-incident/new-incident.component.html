@@ -45,103 +45,103 @@
 
 							<div class="row">
 								<div class="col-md-6 form-group">
-									<label class="font-weight-semibold">Incident Type:</label>
-									<ng-select2 [data]="select2Data.incidentTypeList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">Incident Category:</label>
+									<ng-select2 [data]="select2Data.incidentCategoryList" [options]="select2Options" [(ngModel)]="formData.incidentCategory" name="incidentCategory" (ngModelChange)="loadIncidentTypes($event)"></ng-select2>
 								</div>
 
 								<div class="col-md-6 form-group">
-									<label class="font-weight-semibold">Incident:</label>
-									<ng-select2 [data]="select2Data.incidentList" [options]="select2Options"></ng-select2>
+									<label class="font-weight-semibold">Incident Type:</label>
+									<ng-select2 [data]="select2Data.incidentTypeList" [options]="select2Options" [(ngModel)]="formData.incidentType" name="incidentType"></ng-select2>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="font-weight-semibold">Incidence Title:</label>
-								<input type="text" class="form-control" placeholder="Enter a title for the incidence here">
+								<input type="text" class="form-control" placeholder="Enter a title for the incidence here" [(ngModel)]="formData.incidentTitle" name="incidentTitle">
 							</div>
 
 							<div class="row">
 								<div class="col-md-8 form-group">
 									<label class="font-weight-semibold">Incidence Date:</label>
-									<input type="date" class="form-control">
+									<input type="date" class="form-control" [(ngModel)]="formData.incidentDate" name="incidentDate">
 								</div>
 
 								<div class="col-md-4 form-group">
 									<label class="font-weight-semibold">Time:</label>
-									<input type="time" class="form-control">
+									<input type="time" class="form-control" [(ngModel)]="formData.incidentTime" name="incidentTime">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
 									<label class="font-weight-semibold">Faction:</label>
-									<ng-select2 [data]="select2Data.factionList" [options]="select2Options_multiple"></ng-select2>
+									<ng-select2 [data]="select2Data.factionList" [options]="select2Options_multiple" [(ngModel)]="formData.faction" name="faction"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
 									<label class="font-weight-semibold">Friendly Forces:</label>
-									<ng-select2 [data]="select2Data.friendlyForcesList" [options]="select2Options_multiple"></ng-select2>
+									<ng-select2 [data]="select2Data.friendlyForcesList" [options]="select2Options_multiple" [(ngModel)]="formData.friendlyForces" name="friendlyForces"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
 									<label class="font-weight-semibold">Terrain:</label>
-									<ng-select2 [data]="select2Data.terrainList" [options]="select2Options_multiple"></ng-select2>
+									<ng-select2 [data]="select2Data.terrainList" [options]="select2Options_multiple" [(ngModel)]="formData.terrain" name="terrain"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12 form-group">
 									<label class="font-weight-semibold">Landmark / Associated Feature:</label>
-									<ng-select2 [data]="select2Data.associatedFeatureList" [options]="select2Options_multiple"></ng-select2>
+									<ng-select2 [data]="select2Data.associatedFeatureList" [options]="select2Options_multiple" [(ngModel)]="formData.associatedFeatures" name="associatedFeatures"></ng-select2>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<label class="font-weight-semibold">KIA:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.kia" name="kia"/>
 								</div>
 
 								<div class="col-md-4 form-group">
 									<label class="font-weight-semibold">MIA:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.mia" name="mia"/>
 								</div>
 
 								<div class="col-md-4 form-group">
 									<label class="font-weight-semibold">WIA:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.wia" name="wia"/>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-3 form-group">
 									<label class="font-weight-semibold">Civillians Killed:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.civilliansKilled" name="civilliansKilled"/>
 								</div>
 
 								<div class="col-md-3 form-group">
 									<label class="font-weight-semibold">Civillians Abducted:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.civilliansAbducted" name="civilliansAbducted"/>
 								</div>
 
 								<div class="col-md-3 form-group">
 									<label class="font-weight-semibold">Criminals Killed:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.criminalsKilled" name="criminalsKilled"/>
 								</div>
 
 								<div class="col-md-3 form-group">
 									<label class="font-weight-semibold">Suspects Arrested:</label>
-									<input type="number" class="form-control" placeholder="0"/>
+									<input type="number" class="form-control" placeholder="0" min="0" [(ngModel)]="formData.suspectsArrested" name="suspectsArrested"/>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="font-weight-semibold">Comments / Analysis:</label>
-								<textarea rows="5" cols="5" class="form-control" placeholder="Enter your comment / analysis here"></textarea>
+								<textarea rows="5" cols="5" class="form-control" placeholder="Enter your comment / analysis here"  [(ngModel)]="formData.comments" name="comments"></textarea>
 							</div>
 						</form>
 					</div>
@@ -154,18 +154,18 @@
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label class="font-weight-semibold">POI Latitude:</label>
-								<input type="text" class="form-control"/>
+								<input type="text" class="form-control" [(ngModel)]="formData.poiLatitude" name="poiLatitude"/>
 							</div>
 
 							<div class="col-md-6 form-group">
 								<label class="font-weight-semibold">POI Longitude:</label>
-								<input type="text" class="form-control"/>
+								<input type="text" class="form-control" [(ngModel)]="formData.poiLongitude" name="poiLongitude"/>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<div class="text-center">
-							<button type="submit" class="btn btn-primary">Save Incidence <i class="icon-paperplane ml-2"></i></button>
+							<button type="submit" class="btn btn-primary bg-indigo" (click)="saveIncidence()">Save Incidence <i class="icon-paperplane ml-2"></i></button>
 						</div>
 					</div>
 				</div>

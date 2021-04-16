@@ -15,6 +15,17 @@ export class NewIncidentComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadCountries();
+		this.loadIncidentCategories();
+		let metadataFields = [
+			{"id":"faction", "list":"factionList"},
+			{"id":"friendly_forces", "list":"friendlyForcesList"},
+			{"id":"terrain", "list":"terrainList"},
+			{"id":"associated_feature", "list":"associatedFeatureList"},
+		];
+
+		metadataFields.forEach(field => {
+			this.loadMetadata(field.id, field.list);
+		})
 	}
 
 	select2Options: any = {
@@ -34,8 +45,8 @@ export class NewIncidentComponent implements OnInit {
 		stateList: [],
 		lgaList: [],
 		localityList: [],
+		incidentCategoryList: [],
 		incidentTypeList: [],
-		incidentList: [],
 		factionList: [],
 		friendlyForcesList: [],
 		terrainList: [],
@@ -55,7 +66,21 @@ export class NewIncidentComponent implements OnInit {
 		region: "",
 		state: "",
 		lga: "",
-		locality: ""
+		locality: "",
+		incidentCategory: "",
+		incidentType: "",
+		faction: "",
+		friendlyForces: "",
+		terrain:"",
+		associatedFeature:"",
+		kia:0,
+		mia:0,
+		wia:0,
+		civilliansKilled:0,
+		civilliansAbducted:0,
+		criminalsKilled:0,
+		suspectsArrested:0,
+		comments:""
 	}
 
 	loadCountries(): void {
@@ -94,4 +119,43 @@ export class NewIncidentComponent implements OnInit {
 		this.loadSpatialEntityChildren("localityList", this.formData.lga);
 	}
 
+	loadIncidentCategories(): void {
+		this.serverRequest.get("incidents/incident-type/view-categories").subscribe(res => {
+			this.select2Data.incidentCategoryList = [];
+			(res.contentData).forEach(data => {
+				this.select2Data.incidentCategoryList.push({
+					"id":data.IncidentCategoryId,
+					"text":data.IncidentCategoryName,
+				})
+			})
+		});		
+	}
+
+	loadIncidentTypes(event): void {
+		this.serverRequest.get("incidents/incident-type/view-incident-types?resourceId="+this.formData.incidentCategory).subscribe(res => {
+			this.select2Data.incidentTypeList = [];
+			(res.contentData).forEach(data => {
+				this.select2Data.incidentTypeList.push({
+					"id":data.IncidentTypeId,
+					"text":data.IncidentTypeName,
+				})
+			})
+		});				
+	}
+
+	loadMetadata(field, list): void {
+		this.serverRequest.get("incidents/metadata/view-values?field="+field).subscribe(res => {
+			this.select2Data[list] = [];
+			(res.contentData).forEach(data => {
+				this.select2Data[list].push({
+					"id":data.Value,
+					"text":data.Value,
+				})
+			})
+		});
+	}
+
+	saveIncidence(): void {
+		console.log(this.formData);
+	}
 }
