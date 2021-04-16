@@ -3,6 +3,8 @@ import  * as L from 'leaflet';
 
 import { ServerRequestService } from '../server-request.service';
 
+import Swal from 'sweetalert2/dist/sweetalert2.js';  
+
 @Component({
 	selector: 'app-new-incident',
 	templateUrl: './new-incident.component.html',
@@ -14,6 +16,8 @@ export class NewIncidentComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.initFormData();
+		
 		this.loadCountries();
 		this.loadIncidentCategories();
 		let metadataFields = [
@@ -62,25 +66,31 @@ export class NewIncidentComponent implements OnInit {
 	};
 
 	formData: any = {
-		country: "",
-		region: "",
-		state: "",
-		lga: "",
-		locality: "",
-		incidentCategory: "",
-		incidentType: "",
-		faction: "",
-		friendlyForces: "",
-		terrain:"",
-		associatedFeature:"",
-		kia:0,
-		mia:0,
-		wia:0,
-		civilliansKilled:0,
-		civilliansAbducted:0,
-		criminalsKilled:0,
-		suspectsArrested:0,
-		comments:""
+	}
+
+	initFormData(): void {
+		this.formData = {
+			country: "",
+			region: "",
+			state: "",
+			lga: "",
+			locality: "",
+			incidentTitle:"",
+			incidentCategory: "",
+			incidentType: "",
+			faction: [],
+			friendlyForces: [],
+			terrain:[],
+			associatedFeatures:[],
+			kia:0,
+			mia:0,
+			wia:0,
+			civilliansKilled:0,
+			civilliansAbducted:0,
+			criminalsKilled:0,
+			suspectsArrested:0,
+			comments:""
+		}
 	}
 
 	loadCountries(): void {
@@ -156,6 +166,53 @@ export class NewIncidentComponent implements OnInit {
 	}
 
 	saveIncidence(): void {
-		console.log(this.formData);
+		let incidentData: any = {
+			name: this.formData.incidentTitle,
+			type: this.formData.incidentType,
+			location: this.formData.locality,
+			date: (new Date(this.formData.incidentDate)).toLocaleDateString()+ " " +this.formData.incidentTime,
+			pointOfInterest: "POINT("+this.formData.poiLatitude+" "+this.formData.poiLongitude+")",
+			description: this.formData.comments,
+			metadata: [
+				{number_killed_in_action: this.formData.kia},
+				{number_missing_in_action: this.formData.mia},
+				{number_wounded_in_action: this.formData.wia},
+				{number_of_civillians_killed: this.formData.civilliansKilled},
+				{number_of_civillians_abducted: this.formData.civilliansAbducted},
+				{number_of_criminals_killed: this.formData.criminalsKilled},
+				{number_of_suspect_arrested: this.formData.suspectsArrested}
+			]
+		}
+
+		this.formData.faction.forEach(f=>{
+			incidentData.metadata.push({
+				faction:f
+			})
+		})
+
+		this.formData.friendlyForces.forEach(f=>{
+			incidentData.metadata.push({
+				friendly_forces:f
+			})
+		})
+
+		this.formData.terrain.forEach(f=>{
+			incidentData.metadata.push({
+				terrain:f
+			})
+		})
+
+		this.formData.associatedFeatures.forEach(f=>{
+			incidentData.metadata.push({
+				associated_feature:f
+			})
+		})
+
+		this.serverRequest.post("incidents/incident/new-incident", incidentData).subscribe(res => {
+			Swal.fire('Operation Successful', 'Incidence has been saved successfully', 'success');
+			this.initFormData();
+		}, err => {
+			Swal.fire("An error occurred", "Incidence record not saved", "error");
+		});		
 	}
 }
