@@ -18,13 +18,15 @@ import { MetadataComponent } from './metadata/metadata.component';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartsDashboardComponent } from './charts-dashboard/charts-dashboard.component';
+import { TrendsDashboardComponent } from './trends-dashboard/trends-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewIncidentComponent,
     MetadataComponent,
-    ChartsDashboardComponent
+    ChartsDashboardComponent,
+    TrendsDashboardComponent
   ],
   imports: [
     BrowserModule,

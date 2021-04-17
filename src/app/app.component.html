@@ -86,9 +86,16 @@
       <div class="navbar-collapse collapse" id="navbar-navigation">
         <ul class="navbar-nav navbar-nav-highlight active">
           <li class="nav-item">
-            <a href="../full/index.html" class="navbar-nav-link">
+            <a [routerLink]="['/dashboard/charts']" class="navbar-nav-link">
               <i class="icon-home4 mr-2"></i>
-              Dashboard
+              Charts Dashboard
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a [routerLink]="['/dashboard/trends']" class="navbar-nav-link">
+              <i class="icon-home4 mr-2"></i>
+              Trends Dashboard
             </a>
           </li>
 
@@ -104,23 +111,6 @@
               <i class="icon-strategy mr-2"></i>
               Metadata Management
             </a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav navbar-nav-highlight ml-md-auto">
-          <li class="nav-item dropdown">
-            <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="icon-cog3"></i>
-              <span class="d-md-none ml-2">Dashboard Type</span>
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right">
-              <a href="#" class="dropdown-item" title="Spatio-temporal trends"><i class="icon-user-lock"></i> Trends Dashboard</a>
-              <a href="#" class="dropdown-item" title="Bar Charts. Pie Charts, Plots, Histograms"><i class="icon-statistics"></i> Charts Dashboard</a>
-              <a href="#" class="dropdown-item" title="Exploratory Data Analysis Dashboard"><i class="icon-accessibility"></i> EDA Dashboard</a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item"><i class="icon-gear"></i> View all dashboards</a>
-            </div>
           </li>
         </ul>
       </div>
