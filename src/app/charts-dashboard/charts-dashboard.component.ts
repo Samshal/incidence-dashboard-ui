@@ -228,7 +228,7 @@ export class ChartsDashboardComponent implements OnInit {
 		},
 		legend:{
 			top:10,
-			data: ['KIA', 'MIA', 'WIA', 'Civillians Killed', 'Civillians Abducted', 'Criminals Killed', 'Suspects Arrested']
+			data: ['KIA', 'MIA', 'WIA', 'Civillians Killed', 'Civillians Abducted', 'Criminals Killed', 'Criminals Wounded', 'Suspects Arrested']
 		},
 		series: [
 			{
@@ -270,7 +270,8 @@ export class ChartsDashboardComponent implements OnInit {
 	            },
 				data: [
 					{value: 10, name: "Criminals Killed"},
-					{value: 4, name: "Suspects Arrested"}
+					{value: 4, name: "Suspects Arrested"},
+					{value: 11, name: "Criminals Wounded"}
 				]
 			},
 		],

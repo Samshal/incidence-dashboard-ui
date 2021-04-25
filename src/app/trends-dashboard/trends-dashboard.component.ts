@@ -93,7 +93,7 @@ export class TrendsDashboardComponent implements OnInit {
 		year = year || '2021';
 		let date = +echarts.number.parseDate(year + '-01-01');
 		let end = +echarts.number.parseDate((+year) + '-04-01');
-		let dayTime = 3600 * 24 * 1000;
+		let dayTime = 3600 * 24 * 1000*3;
 		let data: any = [];
 		for (let time = date; time < end; time += dayTime) {
 			data.push([
