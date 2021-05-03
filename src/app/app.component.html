@@ -37,7 +37,6 @@
 
           <div class="dropdown-menu dropdown-menu-right">
             <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
             <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
@@ -85,18 +84,110 @@
 
       <div class="navbar-collapse collapse" id="navbar-navigation">
         <ul class="navbar-nav navbar-nav-highlight active">
-          <li class="nav-item">
-            <a [routerLink]="['/dashboard/charts']" class="navbar-nav-link">
+          <li class="nav-item dropdown">
+            <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="icon-home4 mr-2"></i>
-              Charts Dashboard
+              Dashboard
             </a>
+            <div class="dropdown-menu">
+              <a [routerLink]="['/dashboard/charts']" class="dropdown-item">
+                <i class="icon-home4 mr-2"></i>
+                Charts Dashboard
+              </a>
+              <a [routerLink]="['/dashboard/trends']" class="dropdown-item">
+                <i class="icon-home4 mr-2"></i>
+                Trends Dashboard
+              </a>
+              <a [routerLink]="['/dashboard']" class="dropdown-item">
+                <i class="icon-home4 mr-2"></i>
+                Descriptive Summaries Dashboard
+              </a>
+            </div>
           </li>
 
-          <li class="nav-item">
-            <a [routerLink]="['/dashboard/trends']" class="navbar-nav-link">
-              <i class="icon-home4 mr-2"></i>
-              Trends Dashboard
+          <li class="nav-item nav-item-levels mega-menu-full">
+            <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-make-group mr-2"></i>
+              Data Analysis Portal
             </a>
+
+            <div class="dropdown-menu dropdown-content">
+              <div class="dropdown-content-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Exploratory Data Analysis (EDA)</div>
+                    <div class="dropdown-divider mb-2"></div>
+                    <div class="dropdown-item-group mb-3 mb-md-0">
+                      <ul class="list-unstyled">
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Graphical Data Visualization</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Insight Extraction</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Hypothesis Testing</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Machine Learning</div>
+                    <div class="dropdown-divider mb-2"></div>
+                    <div class="dropdown-item-group mb-3 mb-md-0">
+                      <ul class="list-unstyled">
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Data Clustering</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Data Classification</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Decision Tree</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Text Mining</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Statistical Inference</div>
+                    <div class="dropdown-divider mb-2"></div>
+                    <div class="dropdown-item-group mb-3 mb-md-0">
+                      <ul class="list-unstyled">
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Linear Regression</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Logistic Regression</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Normal Distribution</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="font-size-sm line-height-sm font-weight-semibold text-uppercase mt-1">Geospatial Analysis</div>
+                    <div class="dropdown-divider mb-2"></div>
+                    <div class="dropdown-item-group mb-3 mb-md-0">
+                      <ul class="list-unstyled">
+                        <li>
+                          <a href="http://localhost:4201" target="_blank" class="dropdown-item rounded"><i class="icon-copy"></i> Queries &amp; Reasoning</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Measurements &amp; Transformations</a>
+                        </li>
+                        <li>
+                          <a href="#" class="dropdown-item rounded"><i class="icon-copy"></i> Optimization</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
           <li class="nav-item">
@@ -120,7 +211,7 @@
   <!-- Floating menu -->
   <ul class="fab-menu fab-menu-absolute fab-menu-top-right" data-fab-toggle="click">
     <li>
-      <button type="button" class="fab-menu-btn btn bg-purple-300 btn-float rounded-round btn-icon">
+      <button type="button" class="fab-menu-btn btn bg-purple-300 btn-float rounded-round btn-icon" [routerLink]="['/new-incident']">
         <i class="fab-icon-open icon-plus3"></i>
         <i class="fab-icon-close icon-cross2"></i>
       </button>
