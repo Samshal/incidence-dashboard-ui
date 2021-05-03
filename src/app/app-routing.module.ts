@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewIncidentComponent } from './new-incident/new-incident.component';
 import { ChartsDashboardComponent } from './charts-dashboard/charts-dashboard.component';
 import { TrendsDashboardComponent } from './trends-dashboard/trends-dashboard.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { IncidenceWorkspaceComponent } from './incidence-workspace/incidence-workspace.component';
 
 const routes: Routes = [
 	{
@@ -30,8 +32,20 @@ const routes: Routes = [
 			{
 				path:"trends",
 				component: TrendsDashboardComponent
+			},
+			{
+				path:"descriptive-summary",
+				component: ComingSoonComponent
 			}
 		]
+	},
+	{
+		path: 'coming-soon',
+		component: ComingSoonComponent
+	},
+	{
+		path: 'incidence-workspace',
+		component: IncidenceWorkspaceComponent
 	}
 ];
 

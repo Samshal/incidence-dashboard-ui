@@ -14,7 +14,7 @@ export class TrendsDashboardComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	incidencesIncidentCategoryOption: EChartsOption = {
+	incidencesIncidentCategoryArmedBanditryOption: EChartsOption = {
 		tooltip: {
 			formatter: '{a} <br/>{b} : {c}%'
 		},
@@ -29,8 +29,50 @@ export class TrendsDashboardComponent implements OnInit {
 				formatter: '{value}%'
 			},
 			data: [{
-				value: 50,
+				value: 25,
 				name: 'Armed Banditry'
+			}]
+		}]
+	};
+
+	incidencesIncidentCategoryTerrorismOption: EChartsOption = {
+		tooltip: {
+			formatter: '{a} <br/>{b} : {c}%'
+		},
+		series: [{
+			name: 'Pressure',
+			type: 'gauge',
+			progress: {
+				show: true
+			},
+			detail: {
+				valueAnimation: true,
+				formatter: '{value}%'
+			},
+			data: [{
+				value: 67,
+				name: 'Terrorism'
+			}]
+		}]
+	}
+
+	incidencesIncidentCategoryArmedConflictOption: EChartsOption = {
+		tooltip: {
+			formatter: '{a} <br/>{b} : {c}%'
+		},
+		series: [{
+			name: 'Pressure',
+			type: 'gauge',
+			progress: {
+				show: true
+			},
+			detail: {
+				valueAnimation: true,
+				formatter: '{value}%'
+			},
+			data: [{
+				value: 8,
+				name: 'Armed Conflist'
 			}]
 		}]
 	};
@@ -92,8 +134,8 @@ export class TrendsDashboardComponent implements OnInit {
 	getVirtualData(year: any): any {
 		year = year || '2021';
 		let date = +echarts.number.parseDate(year + '-01-01');
-		let end = +echarts.number.parseDate((+year) + '-04-01');
-		let dayTime = 3600 * 24 * 1000*3;
+		let end = +echarts.number.parseDate((+year) + '-05-03');
+		let dayTime = 3600 * 24 * 1000;
 		let data: any = [];
 		for (let time = date; time < end; time += dayTime) {
 			data.push([

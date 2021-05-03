@@ -19,6 +19,8 @@ import { MetadataComponent } from './metadata/metadata.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartsDashboardComponent } from './charts-dashboard/charts-dashboard.component';
 import { TrendsDashboardComponent } from './trends-dashboard/trends-dashboard.component';
+import { IncidenceWorkspaceComponent } from './incidence-workspace/incidence-workspace.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TrendsDashboardComponent } from './trends-dashboard/trends-dashboard.co
     NewIncidentComponent,
     MetadataComponent,
     ChartsDashboardComponent,
-    TrendsDashboardComponent
+    TrendsDashboardComponent,
+    IncidenceWorkspaceComponent,
+    ComingSoonComponent
   ],
   imports: [
     BrowserModule,
