@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ServerRequestService {
 
-	private serverUrlEndpoint = 'http://localhost:5467/v1/';  // URL to web api
+	private serverUrlEndpoint = 'http://localhost:6789/v1/';  // URL to web api
 	constructor(private http: HttpClient) { 
 	}
 
