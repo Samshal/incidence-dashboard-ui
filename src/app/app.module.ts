@@ -21,6 +21,7 @@ import { ChartsDashboardComponent } from './charts-dashboard/charts-dashboard.co
 import { TrendsDashboardComponent } from './trends-dashboard/trends-dashboard.component';
 import { IncidenceWorkspaceComponent } from './incidence-workspace/incidence-workspace.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { IncidentViewComponent } from './incident-view/incident-view.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     ChartsDashboardComponent,
     TrendsDashboardComponent,
     IncidenceWorkspaceComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    IncidentViewComponent
   ],
   imports: [
     BrowserModule,

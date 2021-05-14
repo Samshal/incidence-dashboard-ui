@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
+import { ServerRequestService } from '../server-request.service';
+
 declare var $: any;
 
 @Component({
@@ -17,15 +19,20 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 	dtTrigger: Subject<any> = new Subject<any>();
 
 
-	currentData: any = [];
+	currentData: any = [
+	];
+
+	currentView: any = {};
 	
-	constructor() { }
+	constructor(private serverRequest: ServerRequestService) { }
 
 	ngOnInit(): void {
 		this.dtOptions = {
 	      pagingType: 'full_numbers',
 	      pageLength: 10
 	    };
+
+	    this.loadIncidents();
 	}
 
 	ngAfterViewInit(): void {
@@ -43,4 +50,16 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 		});
 	}
 
+	loadIncidents(): void {
+		this.serverRequest.get("incidents/incident/view-incidents").subscribe(res => {
+			this.currentData = [];
+			(res.contentData).forEach(data => {
+				this.currentData.push(data)
+			}, error => {
+				this.currentData = [];
+			})
+			console.table(this.currentData);
+			this.rerender();
+		});
+	}
 }
