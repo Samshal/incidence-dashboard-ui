@@ -1,11 +1,55 @@
 <div class="row">
 	<div class="col-md-6">
-		<h4>{{incident.IncidentName}}</h4>
+		<h5>{{incident.IncidentName}}</h5>
+		<div class="row">
+			<div class="table-responsive table-bordered table-scrollable">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Incident Category</td>
+							<td class="font-weight-bold">{{incident.IncidentCategoryName}}</td>
+						</tr>
+						<tr>
+							<td>Incident Type</td>
+							<td class="font-weight-bold">{{incident.IncidentTypeName}}</td>
+						</tr>
+						<tr>
+							<td>Region</td>
+							<td class="font-weight-bold">{{incident.Region}}</td>
+						</tr>
+						<tr>
+							<td>State</td>
+							<td class="font-weight-bold">{{incident.State}}</td>
+						</tr>
+						<tr>
+							<td>LGA</td>
+							<td class="font-weight-bold">{{incident.LGA}}</td>
+						</tr>
+						<tr>
+							<td>Locality</td>
+							<td class="font-weight-bold">{{incident.Locality}}</td>
+						</tr>
+						<tr>
+							<td>Date</td>
+							<td class="font-weight-bold">{{incident.IncidentDate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-6">
-		<div style="height: 70vh; margin-bottom: 10px;"
-		     leaflet 
-		     [leafletOptions]="leafletOptions">
+		<div id="incident-poi" style="height: 70vh;"></div>
+	</div>
+</div>
+<div class="row mt-3">
+	<div class="col-4 card rounded-0" *ngFor="let metadata of incident.metadata" style="margin-bottom: 0 !important; padding: 0 !important">
+		<div class="card-header bg-light header-elements-inline">
+			<span class="card-title text-uppercase">{{metadata.Field}}</span>
+		</div>
+		
+		<div class="card-body">
+			<h5 class="font-weight-semibold">{{metadata.FieldValue}}</h5>
 		</div>
 	</div>
 </div>

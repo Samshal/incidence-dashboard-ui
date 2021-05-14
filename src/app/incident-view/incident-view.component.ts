@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange} from '@angular/core';
 import  * as L from 'leaflet'; 
 
 @Component({
@@ -7,18 +7,47 @@ import  * as L from 'leaflet';
 	styleUrls: ['./incident-view.component.css']
 })
 export class IncidentViewComponent implements OnInit {
-
+	map;
+	marker;
 	@Input() incident: any;
 	constructor() { }
 
 	ngOnInit(): void {
+		this.map = L.map("incident-poi").setView([46.879966, -121.726909], 5);
+		let basemaps = {
+			"Street Map": L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+			    maxZoom: 20,
+			    subdomains:['mt0','mt1','mt2','mt3']
+			}),
+			"Aerial View": L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+			    maxZoom: 20,
+			    subdomains:['mt0','mt1','mt2','mt3']
+			})
+		};
+
+		let layer = L.control.layers(basemaps);
+
+		this.marker = L.marker([46.879966, -121.726909]);
+		(basemaps["Street Map"]).addTo(this.map);
+		layer.addTo(this.map);
+		this.marker.addTo(this.map);
 	}
 
-	leafletOptions = {
-		layers: [
-			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-		],
-		zoom: 5,
-		center: L.latLng(46.879966, -121.726909)
-	};
+	invalidateSize(): void {
+		setTimeout(() => {
+	      this.map.invalidateSize();
+	    }, 500);
+	}
+
+	ngOnChanges(changes: SimpleChanges){
+		const currentIncident: SimpleChange = changes.incident;
+		if (typeof currentIncident.currentValue.IncidentId !== "undefined"){
+			let poi = currentIncident.currentValue.IncidentPointOfInterest;
+			poi = (poi.replace("POINT(", "")).replace(")", "").split(" ");
+			this.invalidateSize();
+			this.map.setView(poi, 13);
+			this.marker.setLatLng(poi);
+			this.marker.bindPopup(currentIncident.currentValue.IncidentTypeName);
+		}
+	}
 }
