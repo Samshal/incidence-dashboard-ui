@@ -148,18 +148,19 @@
 					<div class="col-md-6">
 						<div style="height: 70vh; margin-bottom: 10px;"
 						     leaflet 
-						     [leafletOptions]="leafletOptions">
+						     [leafletOptions]="leafletOptions"
+						     (leafletMapReady)="onMapReady($event)">
 						</div>
 
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label class="font-weight-semibold">POI Latitude:</label>
-								<input type="text" class="form-control" [(ngModel)]="formData.poiLatitude" name="poiLatitude"/>
+								<input type="text" class="form-control" [(ngModel)]="formData.poiLatitude" name="poiLatitude" (change)="updatePoi()"/>
 							</div>
 
 							<div class="col-md-6 form-group">
 								<label class="font-weight-semibold">POI Longitude:</label>
-								<input type="text" class="form-control" [(ngModel)]="formData.poiLongitude" name="poiLongitude"/>
+								<input type="text" class="form-control" [(ngModel)]="formData.poiLongitude" name="poiLongitude" (change)="updatePoi()"/>
 							</div>
 						</div>
 					</div>

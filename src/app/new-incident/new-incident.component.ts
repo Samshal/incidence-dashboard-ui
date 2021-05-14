@@ -11,6 +11,8 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 	styleUrls: ['./new-incident.component.css']
 })
 export class NewIncidentComponent implements OnInit {
+	map;
+	marker;
 	public functions;
 	constructor(private serverRequest: ServerRequestService) { 
 	}
@@ -62,7 +64,7 @@ export class NewIncidentComponent implements OnInit {
 			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
 		],
 		zoom: 5,
-		center: L.latLng(46.879966, -121.726909)
+		center: L.latLng(11.0, 6.0)
 	};
 
 	formData: any = {
@@ -98,7 +100,9 @@ export class NewIncidentComponent implements OnInit {
 	}
 
 	loadSpatialEntityChildren(list, parentId): void {
-		this.loadSpatialEntityList(list, "spatial-entity/entity/view-entity-children?entityId="+parentId);
+		if (parentId != ""){
+			this.loadSpatialEntityList(list, "spatial-entity/entity/view-entity-children?entityId="+parentId);	
+		}
 	}
 
 	loadSpatialEntityList(list, endpoint): void {
@@ -214,5 +218,21 @@ export class NewIncidentComponent implements OnInit {
 		}, err => {
 			Swal.fire("An error occurred", "Incidence record not saved", "error");
 		});		
+	}
+
+	onMapReady(map: L.Map): void {
+		this.map = map;
+		this.marker = L.marker([-10,-10]);
+		this.marker.addTo(map);
+	}
+
+	updatePoi(): void {
+		if (typeof this.formData.poiLongitude !== "undefined" && typeof this.formData.poiLatitude !== "undefined"){
+			const lat = this.formData.poiLatitude;
+			const lon = this.formData.poiLongitude;
+			this.map.setView([lat, lon], 8);
+			this.marker.setLatLng([lat, lon]);
+			this.marker.bindPopup(lat+", "+lon);
+		}
 	}
 }

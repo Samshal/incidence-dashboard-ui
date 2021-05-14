@@ -47,12 +47,6 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 	constructor(private serverRequest: ServerRequestService) { }
 
 	ngOnInit(): void {
-		// this.dtOptions = {
-	 //      pagingType: 'full_numbers',
-	 //      pageLength: 10
-	 //    };
-
-	    // this.loadIncidents();
 	}
 
 	ngAfterViewInit(): void {
