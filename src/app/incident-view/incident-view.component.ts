@@ -13,7 +13,7 @@ export class IncidentViewComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-		this.map = L.map("incident-poi").setView([46.879966, -121.726909], 5);
+		this.map = L.map("incident-poi").setView([46.879966, -121.726909], 13);
 		let basemaps = {
 			"Street Map": L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
 			    maxZoom: 20,
@@ -45,7 +45,7 @@ export class IncidentViewComponent implements OnInit {
 			let poi = currentIncident.currentValue.IncidentPointOfInterest;
 			poi = (poi.replace("POINT(", "")).replace(")", "").split(" ");
 			this.invalidateSize();
-			this.map.setView(poi, 13);
+			this.map.setView(poi);
 			this.marker.setLatLng(poi);
 			this.marker.bindPopup(currentIncident.currentValue.IncidentTypeName);
 		}

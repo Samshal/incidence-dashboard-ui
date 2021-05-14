@@ -15,7 +15,27 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 	@ViewChild(DataTableDirective, {static: false})
 	dtElement;
 
-	dtOptions: any  = {};
+	dtOptions: any  = {
+		pagingType: 'full_numbers',
+		pageLength: 10,
+		serverSide: true,
+		processing: true,
+		ajax: (dataTablesParameters: any, callback) => {
+			const length = dataTablesParameters.length;
+			const search = dataTablesParameters.search.value;
+			const start = dataTablesParameters.start;
+			this.serverRequest.get("incidents/incident/view-incidents?length="+length+"&start="+start+"&search="+search).subscribe(res => {
+				this.currentData = [];
+				this.currentData = res.contentData.data;
+
+				callback({
+					recordsTotal: res.contentData.recordsTotal,
+					recordsFiltered: res.contentData.recordsFiltered,
+					data:[]
+				})
+			});
+		}
+	};
 	dtTrigger: Subject<any> = new Subject<any>();
 
 
@@ -27,12 +47,12 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 	constructor(private serverRequest: ServerRequestService) { }
 
 	ngOnInit(): void {
-		this.dtOptions = {
-	      pagingType: 'full_numbers',
-	      pageLength: 10
-	    };
+		// this.dtOptions = {
+	 //      pagingType: 'full_numbers',
+	 //      pageLength: 10
+	 //    };
 
-	    this.loadIncidents();
+	    // this.loadIncidents();
 	}
 
 	ngAfterViewInit(): void {

@@ -12,10 +12,9 @@
                 <th>Date</th>
                 <th>Comment / Analysis</th>
                 <th class="text-center">Actions</th>
-                <th style="display: none">Incident</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="currentData?.length != 0">
             <tr *ngFor="let record of currentData">
             	<td>{{record.IncidentId}}</td>
             	<td>{{record.Region}}</td>
@@ -31,7 +30,11 @@
             			<i class="icon-eye"></i>
             		</a>
             	</td>
-                <td style="display: none">{{record.IncidentName}}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="currentData?.length == 0">
+            <tr>
+                <td colspan="10">No incidences available</td>
             </tr>
         </tbody>
     </table>
