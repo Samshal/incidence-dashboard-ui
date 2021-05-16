@@ -24,6 +24,8 @@ import { IncidenceWorkspaceComponent } from './incidence-workspace/incidence-wor
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { IncidentViewComponent } from './incident-view/incident-view.component';
 
+import { VizComponentsModule } from './viz-components/viz-components.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { IncidentViewComponent } from './incident-view/incident-view.component';
     NgxDaterangepickerMd.forRoot(),
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
+    }),
+    VizComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,22 +1,6 @@
 <div class="row">
 	<div class="col-md-5">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">Regions</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
-
-			<div class="card-body">
-				<div class="chart-container">
-					<div echarts [options]="incidencesByRegionOption"></div>
-				</div>
-			</div>
-		</div>
+		<app-incidences-by-region></app-incidences-by-region>
 	</div>
 	<div class="col-md-7">
 		<div class="card">
@@ -41,60 +25,12 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">States</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
-
-			<div class="card-body">
-				<div class="chart-container">
-					<div echarts [options]="incidencesByStateOption"></div>
-				</div>
-			</div>
-		</div>
+		<app-incidences-by-state></app-incidences-by-state>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">North East</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
-
-			<div class="card-body">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="chart-container">
-							<div echarts [options]="northEastCategoriesOption"></div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="chart-container">
-							<div echarts [options]="northEastCasualtiesOption"></div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="chart-container">
-							<div echarts [options]="northEastTimeSeriesOption"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="col-md-12" *ngFor="let region of regions">
+		<app-incidences-by-region-breakdown region="{{region}}" categoriesData="{{stringify(categoriesData[region])}}" trendsData="{{stringify(trendsData[region])}}"></app-incidences-by-region-breakdown>
 	</div>
 </div>

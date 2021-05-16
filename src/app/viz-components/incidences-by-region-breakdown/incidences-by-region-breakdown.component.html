@@ -1,0 +1,35 @@
+<div class="card">
+	<div class="card-header header-elements-inline">
+		<h5 class="card-title">{{region}}</h5>
+		<div class="header-elements">
+			<div class="list-icons">
+        		<a class="list-icons-item" data-action="collapse"></a>
+        		<a class="list-icons-item" data-action="reload"></a>
+        	</div>
+    	</div>
+	</div>
+
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-container">
+					<div echarts [options]="regionCategoriesOption" (chartInit)="onCategoriesChartInit($event)"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-5">
+			<div class="col-md-12">
+				<div class="chart-container">
+					<div echarts [options]="regionCasualtiesOption"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-5">
+			<div class="col-md-12">
+				<div class="chart-container">
+					<div echarts [options]="regionTimeSeriesOption" (chartInit)="onTrendsChartInit($event)"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
