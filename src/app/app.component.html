@@ -52,22 +52,28 @@
 <div class="page-header page-header-dark bg-indigo">
 
   <!-- Page header content -->
-  <div class="page-header-content container header-elements-md-inline">
-    <div class="page-title d-flex">
+  <div class="page-header-content container">
+    <div class="page-title">
       <h4>Events &amp; Incidences Dashboard</h4>
       <a href="#" class="header-elements-toggle text-white d-md-none"><i class="icon-more"></i></a>
     </div>
+  </div>
 
-    <div class="header-elements d-none bg-transparent py-0 border-0 mb-3 mb-md-0">
-      <form action="#">
-        <div class="form-group form-group-feedback form-group-feedback-right">
-          <input type="search" class="form-control text-white border-bottom-1 wmin-md-200" placeholder="Search">
-          <div class="form-control-feedback text-white">
-            <i class="icon-search4 font-size-sm"></i>
-          </div>
-        </div>
-      </form>
-    </div>
+  <div class="bg-transparent col-center py-0 border-0 mb-3 mb-md-0" style="color: #333">
+    <div class="">
+        <input type="text"
+          ngxDaterangepickerMd
+          [(ngModel)]="selectedDate"
+          [showCustomRangeLabel]="true"
+          [alwaysShowCalendars]="true"
+          [ranges]="ranges"
+          [linkedCalendars]="true"
+          [keepCalendarOpeningWithRange]="true"
+          [showRangeLabelOnInput]="true"
+          class="form-control date-selector"
+          placeholder="click here to select date range to filter data"
+          (change)="changed($event)"/>
+      </div>
   </div>
   <!-- /page header content -->
 

@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DataTablesModule } from "angular-datatables";
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 import { NewIncidentComponent } from './new-incident/new-incident.component';
 
@@ -42,6 +43,7 @@ import { IncidentViewComponent } from './incident-view/incident-view.component';
     NgSelect2Module,
     LeafletModule,
     DataTablesModule,
+    NgxDaterangepickerMd.forRoot(),
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })

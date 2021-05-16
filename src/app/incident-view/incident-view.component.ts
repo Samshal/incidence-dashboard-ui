@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange} from '@angular/core';
 import  * as L from 'leaflet'; 
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon.png";
+import "leaflet/dist/images/layers.png";
 
 @Component({
 	selector: 'app-incident-view',

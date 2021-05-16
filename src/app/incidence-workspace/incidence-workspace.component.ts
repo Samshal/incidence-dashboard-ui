@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
 import { ServerRequestService } from '../server-request.service';
+import { EventsService } from '../events.service';
 
 declare var $: any;
 
@@ -24,7 +25,12 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 			const length = dataTablesParameters.length;
 			const search = dataTablesParameters.search.value;
 			const start = dataTablesParameters.start;
-			this.serverRequest.get("incidents/incident/view-incidents?length="+length+"&start="+start+"&search="+search).subscribe(res => {
+			const sDate = this.globalDateRange.startDate;
+			const eDate = this.globalDateRange.endDate;
+
+			this.serverRequest
+			.get("incidents/incident/view-incidents?length="+length+"&start="+start+"&search="+search+"&startDate="+sDate+"&endDate="+eDate)
+			.subscribe(res => {
 				this.currentData = [];
 				this.currentData = res.contentData.data;
 
@@ -39,14 +45,24 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 	dtTrigger: Subject<any> = new Subject<any>();
 
 
+	globalDateRange = {startDate:"", endDate:""};
+
 	currentData: any = [
 	];
 
 	currentView: any = {};
 	
-	constructor(private serverRequest: ServerRequestService) { }
+	constructor(private serverRequest: ServerRequestService, private eventsService: EventsService) { }
 
 	ngOnInit(): void {
+		this.eventsService.getEvent('date-selected').subscribe(response=>{
+			if (response != null){
+				this.globalDateRange = response;
+				setTimeout(()=>{
+					this.rerender();
+				}, 500);
+			}
+		})
 	}
 
 	ngAfterViewInit(): void {
@@ -72,7 +88,6 @@ export class IncidenceWorkspaceComponent implements AfterViewInit, OnDestroy, On
 			}, error => {
 				this.currentData = [];
 			})
-			console.table(this.currentData);
 			this.rerender();
 		});
 	}
