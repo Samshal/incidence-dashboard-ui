@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,9 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { IncidentViewComponent } from './incident-view/incident-view.component';
 
 import { VizComponentsModule } from './viz-components/viz-components.module';
+import { IncidenceTimelineComponent } from './incidence-timeline/incidence-timeline.component';
+
+import { HorizontalTimelineComponent } from './horizontal-timeline/horizontal-timeline.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +39,13 @@ import { VizComponentsModule } from './viz-components/viz-components.module';
     TrendsDashboardComponent,
     IncidenceWorkspaceComponent,
     ComingSoonComponent,
-    IncidentViewComponent
+    IncidentViewComponent,
+    IncidenceTimelineComponent,
+    HorizontalTimelineComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,

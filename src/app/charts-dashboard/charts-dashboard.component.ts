@@ -27,56 +27,6 @@ export class ChartsDashboardComponent implements OnInit {
 				this.loadIncidencesByRegionData();
 			}, 500);
 		});
-
-		this.http.get<any>("/assets/nigeria.geojson").subscribe(res=>{
-			registerMap("Nigeria", res);
-
-			this.incidencesMapOption = {
-				title: {
-		            text: 'Incidents Map',
-		            left: 'center'
-		        },
-		        tooltip: {
-		            trigger: 'item',
-		            showDelay: 0,
-		            transitionDuration: 0.2,
-		            formatter: function (params) {
-		                let value = (params.value + '').split('.');
-		                let _value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-		                return params.seriesName + '<br/>' + params.name + ': ' + _value;
-		            }
-		        },
-		        visualMap: {
-		            left: 'right',
-		            min: 1,
-		            max: 500,
-		            inRange: {
-		                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-		            },
-		            text: ['High', 'Low'], 
-		            calculable: true
-		        },
-		        series: [
-		            {
-		                name: 'Incidents',
-		                type: 'map',
-		                roam: true,
-		                map: 'Nigeria',
-		                emphasis: {
-		                    label: {
-		                        show: true
-		                    }
-		                },
-		                data:[
-		                    {name: 'Kaduna', value: 250},
-		                    {name: 'Borno', value: 600},
-		                    {name: 'Adamawa', value: 300},
-		                    {name: 'Nasarawa', value: 88}
-		                ]
-		            }
-		        ]
-			}
-		})
 	}
 
 	globalDateRange: any = {"startDate":"", "endDate":""};

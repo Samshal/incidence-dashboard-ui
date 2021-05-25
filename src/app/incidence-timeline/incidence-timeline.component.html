@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-md-12">
+		<horizontal-timeline [timelineElements]="timeline" [showContent]="false" [dateFormat]="'dd MMM, yyyy'"></horizontal-timeline>
+	</div>
+	<div class="col-md-12">
+		<div style="height: 70vh; margin-bottom: 10px;"
+		     leaflet 
+		     [leafletOptions]="leafletOptions"
+		     (leafletMapReady)="onMapReady($event)">
+		</div>
+	</div>
+</div>

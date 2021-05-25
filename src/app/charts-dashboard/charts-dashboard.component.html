@@ -3,23 +3,7 @@
 		<app-incidences-by-region></app-incidences-by-region>
 	</div>
 	<div class="col-md-7">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">Map</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
-
-			<div class="card-body">
-				<div class="chart-container">
-					<div echarts [options]="incidencesMapOption"></div>
-				</div>
-			</div>
-		</div>
+		<app-incidences-map></app-incidences-map>
 	</div>
 </div>
 

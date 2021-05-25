@@ -6,6 +6,7 @@ import { ChartsDashboardComponent } from './charts-dashboard/charts-dashboard.co
 import { TrendsDashboardComponent } from './trends-dashboard/trends-dashboard.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { IncidenceWorkspaceComponent } from './incidence-workspace/incidence-workspace.component';
+import { IncidenceTimelineComponent } from './incidence-timeline/incidence-timeline.component';
 
 const routes: Routes = [
 	{
@@ -32,6 +33,10 @@ const routes: Routes = [
 			{
 				path:"trends",
 				component: TrendsDashboardComponent
+			},
+			{
+				path:"timeline",
+				component: IncidenceTimelineComponent
 			},
 			{
 				path:"descriptive-summary",
