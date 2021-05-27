@@ -29,6 +29,7 @@ import { VizComponentsModule } from './viz-components/viz-components.module';
 import { IncidenceTimelineComponent } from './incidence-timeline/incidence-timeline.component';
 
 import { HorizontalTimelineComponent } from './horizontal-timeline/horizontal-timeline.component';
+import { MetadataFriendlyForcesLocationsComponent } from './metadata-friendly-forces-locations/metadata-friendly-forces-locations.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HorizontalTimelineComponent } from './horizontal-timeline/horizontal-ti
     ComingSoonComponent,
     IncidentViewComponent,
     IncidenceTimelineComponent,
-    HorizontalTimelineComponent
+    HorizontalTimelineComponent,
+    MetadataFriendlyForcesLocationsComponent
   ],
   imports: [
     BrowserModule,
