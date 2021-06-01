@@ -91,30 +91,33 @@
         <ul class="navbar-nav navbar-nav-highlight active">
           <li class="nav-item dropdown">
             <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="icon-home4 mr-2"></i>
+              <i class="icon-stats-growth mr-2"></i>
               Dashboard
             </a>
             <div class="dropdown-menu">
               <a [routerLink]="['/dashboard/charts']" class="dropdown-item">
-                <i class="icon-home4 mr-2"></i>
+                <i class="icon-pie-chart3 mr-2"></i>
                 Charts Dashboard
               </a>
               <a [routerLink]="['/dashboard/trends']" class="dropdown-item">
-                <i class="icon-home4 mr-2"></i>
+                <i class="icon-stats-growth2 mr-2"></i>
                 Trends Dashboard
               </a>
-              <a [routerLink]="['/dashboard/timeline']" class="dropdown-item">
-                <i class="icon-home4 mr-2"></i>
-                Timeline Dashboard
-              </a>
-              <a [routerLink]="['/dashboard/descriptive-summary']" class="dropdown-item">
+              <a [routerLink]="['/dashboard/descriptive-summary']" class="dropdown-item" *ngIf="showMenuItem">
                 <i class="icon-home4 mr-2"></i>
                 Descriptive Summaries Dashboard
               </a>
             </div>
           </li>
 
-          <li class="nav-item nav-item-levels mega-menu-full">
+          <li class="nav-item">
+              <a [routerLink]="['/dashboard/timeline']" class="navbar-nav-link">
+                <i class="icon-git-merge mr-2"></i>
+                Timeline Dashboard
+              </a>
+          </li>
+
+          <li class="nav-item nav-item-levels mega-menu-full" *ngIf="showMenuItem">
             <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="icon-make-group mr-2"></i>
               Data Analysis Portal

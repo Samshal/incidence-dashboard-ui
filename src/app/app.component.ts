@@ -13,6 +13,8 @@ declare var $: any;
 export class AppComponent {
 	title = 'incidence-dashboard';
 
+	showMenuItem = false;
+
 	selectedDate: any;
 	alwaysShowCalendars: boolean;
 	ranges: any = {

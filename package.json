@@ -33,6 +33,7 @@
     "ng-select2": "^1.2.5",
     "ngx-daterangepicker-material": "^4.0.1",
     "ngx-echarts": "^6.0.1",
+    "pace-js": "^1.2.4",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",
     "select2": "^4.1.0-rc.0",
