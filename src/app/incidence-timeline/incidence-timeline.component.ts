@@ -113,12 +113,28 @@ export class IncidenceTimelineComponent implements OnInit {
 		    fillOpacity: 0.8
 		};
 
+		var shieldIcon = L.icon({
+		    iconUrl: 'assets/images/nig.png',
+		    shadowUrl: '',
+
+		    iconSize:     [38, 38], // size of the icon
+		    shadowSize:   [50, 64], // size of the shadow
+		    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+		    shadowAnchor: [4, 62],  // the same for the shadow
+		    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
+
 		
 		this.http.get('assets/data.geojson').subscribe((json: any) => {
 	        this.json = json;
 	        L.geoJSON(this.json, {
 	        	pointToLayer: function (feature, latlng) {
-			        return L.circleMarker(latlng, geojsonMarkerOptions);
+	        		return L.marker(latlng, {icon: shieldIcon});
+			        // return L.circleMarker(latlng, geojsonMarkerOptions);
+			    },
+			    onEachFeature: function(feature, layer) {
+			    	console.log(feature)
+			    	layer.bindPopup("Military location")
 			    }
 	        }).addTo(map);
 	    });
@@ -181,14 +197,16 @@ export class IncidenceTimelineComponent implements OnInit {
 			    }),
 			    onEachFeature: function(feature, layer) {
 			    	layer.on({
-			    		mouseover: (e => {
+			    		click: (e => {
 			    			$(".leaflet-info-bar").removeClass("hidden");
-			    			const html = "<h1>"+feature.properties.type+" ("+feature.properties.category+")</h1><p>"+feature.properties.title+"</p>"
+			    			const _hider = '$(".leaflet-info-bar").addClass("hidden")';
+			    			const hide = "<button class='btn btn-link pull-right text-primary' onclick='"+_hider+"'>&times;<small> close</small></button>";
+			    			const html = "<h1>"+feature.properties.type+" ("+feature.properties.category+")&nbsp;&nbsp;&nbsp;&nbsp;"+hide+"</h1><p>"+feature.properties.title+"</p>"
 			    			$(".leaflet-info-bar").html(html);
 			    		}),
-			    		mouseout: (e => {
-			    			$(".leaflet-info-bar").addClass("hidden");
-			    		})
+			    		// mouseout: (e => {
+			    		// 	$(".leaflet-info-bar").addClass("hidden");
+			    		// })
 			    	})
 			    }
 	        });
@@ -200,34 +218,48 @@ export class IncidenceTimelineComponent implements OnInit {
 		})
 	}
 
-	drawnItems: L.FeatureGroup = L.featureGroup();;
+	drawnItems: L.FeatureGroup = L.featureGroup();
 
 	drawOptions: any = {
 		draw: {
 			position: "topleft",
-			marker: {
-				icon: L.icon({
-					iconSize: [ 25, 41 ],
-					iconAnchor: [ 13, 41 ],
-					iconUrl: '2b3e1faf89f94a4835397e7a43b4f77d.png',
-					iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
-					shadowUrl: 'a0c6cc1401c107b501efee6477816891.png'
-				})
-			},
-			polyline: false,
+			// marker: {
+			// 	icon: L.icon({
+			// 		iconSize: [ 25, 41 ],
+			// 		iconAnchor: [ 13, 41 ],
+			// 		iconUrl: '2b3e1faf89f94a4835397e7a43b4f77d.png',
+			// 		iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
+			// 		shadowUrl: 'a0c6cc1401c107b501efee6477816891.png'
+			// 	})
+			// },
+			// polyline: false,
 			circle: {
 				shapeOptions: {
 					color: '#d4af37'
 				}
 			},
-			rectangle: {
-				shapeOptions: {
-					color: '#85bb65'
-				}
-			}
+			rectangle: false,
+			polygon: false,
+			marker: false,
+			circlemarker: false
 		},
 		edit: {
-			featureGroup: this.drawnItems
+			featureGroup: this.drawnItems,
+			edit: false
 		}
 	};
+
+	public onDrawCreated(e: any) {
+		var type = e.layerType;
+		if (type == 'circle') {
+			var theRadius = e.layer.getRadius();		
+			this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
+			this.drawnItems.bringToBack();
+
+			this.drawnItems.bindPopup("Radius: "+ (Math.round((theRadius/1000)*100)/100) + " KM");
+			this.drawnItems.openPopup();
+		}
+		else if (type == 'polyline') {
+		}
+	}
 }
