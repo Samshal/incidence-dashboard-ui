@@ -67,7 +67,7 @@ export class IncidenceTimelineComponent implements OnInit {
 
 	getIncidentTypeStyle(feature): any {
 		var geojsonMarkerEventsOptions = {
-		    radius: 4,
+		    radius: 5,
 		    fillColor: this.getIncidentTypeColor(feature.properties.type),
 		    color: "#f00",
 		    weight: 0.8,
@@ -194,10 +194,40 @@ export class IncidenceTimelineComponent implements OnInit {
 	        });
 
 			const html = "<h4>"+moment(sDate).format("DD MMMM, YYYY")+"</h4><h6 class='font-weight-semibold' style='line-height: 0;'>Total Incidences = "+this.json["features"].length +"</h6>"
-	        $(".leaflet-bar").html(html);
+	        $(".leaflet-control-zoom").html(html);
 
 	        this.map.addLayer(this.eventsLayer);
 		})
 	}
 
+	drawnItems: L.FeatureGroup = L.featureGroup();;
+
+	drawOptions: any = {
+		draw: {
+			position: "topleft",
+			marker: {
+				icon: L.icon({
+					iconSize: [ 25, 41 ],
+					iconAnchor: [ 13, 41 ],
+					iconUrl: '2b3e1faf89f94a4835397e7a43b4f77d.png',
+					iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
+					shadowUrl: 'a0c6cc1401c107b501efee6477816891.png'
+				})
+			},
+			polyline: false,
+			circle: {
+				shapeOptions: {
+					color: '#d4af37'
+				}
+			},
+			rectangle: {
+				shapeOptions: {
+					color: '#85bb65'
+				}
+			}
+		},
+		edit: {
+			featureGroup: this.drawnItems
+		}
+	};
 }

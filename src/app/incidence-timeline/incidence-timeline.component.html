@@ -4,18 +4,21 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-11">
-		<div style="height: 70vh; margin-bottom: 10px;"
+	<div class="col-md-10">
+		<div style="height: 100vh; margin-bottom: 10px;"
 		     leaflet 
+		     leafletDraw
 		     [leafletOptions]="leafletOptions"
+		     [leafletDrawOptions]="drawOptions"
 		     (leafletMapReady)="onMapReady($event)">
+		     <div [leafletLayer]="drawnItems"></div>
 		</div>
 	</div>
-	<div class="col-md-1" style="overflow-x: hidden; background-color: rgba(255, 255, 255, 0.4); padding-top: 5px;">
+	<div class="col-md-2" style="overflow-x: hidden; background-color: rgba(255, 255, 255, 0.4); padding-top: 5px;">
 		<h6 class="font-weight-semibold text-center">LEGEND</h6>
 		<table>
-			<tr *ngFor="let item of typeColors | keyvalue" style="border: 1px solid #f00">
-				<td style="background-color: {{item.value}}; padding: 3px; font-size:1em; font-weight: 500;" class="text-white text-bold">{{item.key}}</td>
+			<tr *ngFor="let item of typeColors | keyvalue">
+				<td style="padding: 0.6em; line-height: 1.25; font-weight: 500;"><span class="dot" style="background-color: {{item.value}}"></span>&nbsp;&nbsp;{{item.key}}</td>
 			</tr>
 		</table>
 	</div>

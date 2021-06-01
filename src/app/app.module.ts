@@ -16,6 +16,7 @@ import * as $ from 'jquery';
 import * as bootstrap from "bootstrap";
 import { NgSelect2Module } from 'ng-select2';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 import { MetadataComponent } from './metadata/metadata.component';
 
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -53,6 +54,7 @@ import { MetadataFriendlyForcesLocationsComponent } from './metadata-friendly-fo
     AppRoutingModule,
     NgSelect2Module,
     LeafletModule,
+    LeafletDrawModule,
     DataTablesModule,
     NgxDaterangepickerMd.forRoot(),
     NgxEchartsModule.forRoot({
