@@ -1,79 +1,85 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">Calendar Heatmap</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
-
-			<div class="card-body" style="height: 250px; overflow: hidden;">
-				<div class="chart-container">
-					<div echarts [options]="incidencesCalendarHeatmapOption"></div>
+<div class="page-content" style="padding: 1rem !important">
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header header-elements-inline">
+					<h5 class="card-title">Calendar Heatmap</h5>
+					<div class="header-elements">
+						<div class="list-icons">
+	                		<a class="list-icons-item" data-action="collapse"></a>
+	                		<a class="list-icons-item" data-action="reload"></a>
+	                	</div>
+	            	</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">Incidence By Occurrence</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
-
-			<div class="card-body">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="chart-container">
-							<div echarts [options]="incidencesIncidentCategoryArmedBanditryOption"></div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="chart-container">
-							<div echarts [options]="incidencesIncidentCategoryTerrorismOption"></div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="chart-container">
-							<div echarts [options]="incidencesIncidentCategoryArmedConflictOption"></div>
-						</div>
+				<div class="card-body" style="height: 250px; overflow: hidden;">
+					<div class="chart-container">
+						<div echarts [options]="incidencesCalendarHeatmapOption"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="card">
-			<div class="card-header header-elements-inline">
-				<h5 class="card-title">Calendar Trends</h5>
-				<div class="header-elements">
-					<div class="list-icons">
-                		<a class="list-icons-item" data-action="collapse"></a>
-                		<a class="list-icons-item" data-action="reload"></a>
-                	</div>
-            	</div>
-			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header header-elements-inline">
+					<h5 class="card-title">Incidence By Occurrence</h5>
+					<div class="header-elements">
+						<div class="list-icons">
+	                		<a class="list-icons-item" data-action="collapse"></a>
+	                		<a class="list-icons-item" data-action="reload"></a>
+	                	</div>
+	            	</div>
+				</div>
 
-			<div class="card-body">
-				<div class="chart-container">
-					<div echarts [options]="incidencesCalendarTrendsOption"></div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="chart-container">
+								<div echarts [options]="incidencesIncidentCategoryArmedBanditryOption"></div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="chart-container">
+								<div echarts [options]="incidencesIncidentCategoryTerrorismOption"></div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="chart-container">
+								<div echarts [options]="incidencesIncidentCategoryArmedConflictOption"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header header-elements-inline">
+					<h5 class="card-title">Calendar Trends</h5>
+					<div class="header-elements">
+						<div class="list-icons">
+	                		<a class="list-icons-item" data-action="collapse"></a>
+	                		<a class="list-icons-item" data-action="reload"></a>
+	                	</div>
+	            	</div>
+				</div>
+
+				<div class="card-body">
+					<div class="chart-container">
+						<div echarts [options]="incidencesCalendarTrendsOption"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+  </div>
 </div>

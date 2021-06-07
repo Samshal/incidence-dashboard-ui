@@ -1,43 +1,49 @@
-<div class="col-md-12">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Region</th>
-                <th>State</th>
-                <th>LGA</th>
-                <th>Locality</th>
-                <th>Incident Category</th>
-                <th>Incident Type</th>
-                <th>Date</th>
-                <th>Comment / Analysis</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody *ngIf="currentData?.length != 0">
-            <tr *ngFor="let record of currentData">
-            	<td>{{record.IncidentId}}</td>
-            	<td>{{record.Region}}</td>
-                <td>{{record.State}}</td>
-                <td>{{record.LGA}}</td>
-                <td>{{record.Locality}}</td>
-                <td>{{record.IncidentCategoryName}}</td>
-                <td>{{record.IncidentTypeName}}</td>
-                <td>{{record.IncidentDate}}</td>
-                <td>{{record.IncidentDescription}}</td>
-            	<td>
-            		<a href="#" data-toggle="modal" data-target="#modal_view_incident" class="btn btn-light btn-icon mr-2" (click)="currentView=record">
-            			<i class="icon-eye"></i>
-            		</a>
-            	</td>
-            </tr>
-        </tbody>
-        <tbody *ngIf="currentData?.length == 0">
-            <tr>
-                <td colspan="10">No incidences available</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="page-content" style="padding: 1rem !important">
+  <div class="content-wrapper">
+    <div class="content">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Region</th>
+                        <th>State</th>
+                        <th>LGA</th>
+                        <th>Locality</th>
+                        <th>Incident Category</th>
+                        <th>Incident Type</th>
+                        <th>Date</th>
+                        <th>Comment / Analysis</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="currentData?.length != 0">
+                    <tr *ngFor="let record of currentData">
+                        <td>{{record.IncidentId}}</td>
+                        <td>{{record.Region}}</td>
+                        <td>{{record.State}}</td>
+                        <td>{{record.LGA}}</td>
+                        <td>{{record.Locality}}</td>
+                        <td>{{record.IncidentCategoryName}}</td>
+                        <td>{{record.IncidentTypeName}}</td>
+                        <td>{{record.IncidentDate}}</td>
+                        <td>{{record.IncidentDescription}}</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#modal_view_incident" class="btn btn-light btn-icon mr-2" (click)="currentView=record">
+                                <i class="icon-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="currentData?.length == 0">
+                    <tr>
+                        <td colspan="10">No incidences available</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
 </div>
 
 <div id="modal_view_incident" class="modal fade" tabindex="-1">

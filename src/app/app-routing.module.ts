@@ -8,11 +8,17 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { IncidenceWorkspaceComponent } from './incidence-workspace/incidence-workspace.component';
 import { IncidenceTimelineComponent } from './incidence-timeline/incidence-timeline.component';
 
+import { LoginComponent } from './login/login.component';
+
 const routes: Routes = [
 	{
 		path:"",
-		redirectTo: "/dashboard/charts",
+		redirectTo: "/login",
 		pathMatch: "full"
+	},
+	{
+		path: 'login',
+		component: LoginComponent
 	},
 	{
 		path: 'new-incident',

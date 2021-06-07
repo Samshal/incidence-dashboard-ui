@@ -31,6 +31,8 @@ import { IncidenceTimelineComponent } from './incidence-timeline/incidence-timel
 
 import { HorizontalTimelineComponent } from './horizontal-timeline/horizontal-timeline.component';
 import { MetadataFriendlyForcesLocationsComponent } from './metadata-friendly-forces-locations/metadata-friendly-forces-locations.component';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { MetadataFriendlyForcesLocationsComponent } from './metadata-friendly-fo
     IncidentViewComponent,
     IncidenceTimelineComponent,
     HorizontalTimelineComponent,
-    MetadataFriendlyForcesLocationsComponent
+    MetadataFriendlyForcesLocationsComponent,
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
