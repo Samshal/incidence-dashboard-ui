@@ -5,3 +5,16 @@
 	font-weight: bolder;
 	font-size: 1.2em;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #4b2443;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #4b2443;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #4b2443;
+}

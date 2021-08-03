@@ -11,7 +11,7 @@ import { EventsService } from '../events.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  showMenuItem = true;
+  showMenuItem = false;
 
   selectedDate: any;
   alwaysShowCalendars: boolean;
